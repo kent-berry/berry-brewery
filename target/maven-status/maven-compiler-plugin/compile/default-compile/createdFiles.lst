@@ -1,0 +1,6 @@
+com\berrybrewery\BerryBreweryApplication.class
+com\berrybrewery\service\BeerService.class
+com\berrybrewery\web\controller\BeerController.class
+com\berrybrewery\web\model\BeerDTO$BeerDTOBuilder.class
+com\berrybrewery\service\BeerServiceImpl.class
+com\berrybrewery\web\model\BeerDTO.class

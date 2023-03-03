@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/customer/")
+@RequestMapping(CustomerController.API_V_1_CUSTOMER)
 @RequiredArgsConstructor
 public class CustomerController {
+    public static final String API_V_1_CUSTOMER = "/api/v1/customer";
     private CustomerService customerService;
 
     @GetMapping("/{customerId}")
@@ -27,7 +28,7 @@ public class CustomerController {
         CustomerDto savedDto = customerService.saveNewCustomer(customerDto);
 
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Location", "/api/v1/customer/" + savedDto.getId().toString());
+        httpHeaders.add("Location", "/api/v1/customer" + "/" + savedDto.getId().toString());
 
         return new ResponseEntity(httpHeaders, HttpStatus.CREATED);
     }

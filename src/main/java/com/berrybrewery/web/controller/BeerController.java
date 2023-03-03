@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@RequestMapping("/api/v1/beer")
+@Deprecated
+@RequestMapping(BeerController.API_V_1_BEER)
 @RestController
 @RequiredArgsConstructor
 public class BeerController {
 
+    public static final String API_V_1_BEER = "/api/v1/beer";
     private final BeerService beerService;
 
     @GetMapping({"/{beerId}"})
@@ -30,7 +32,7 @@ public class BeerController {
 
         HttpHeaders headers = new HttpHeaders();
         //todo add hostname to url
-        headers.add("Location", "/api/v1/beer/" + savedDto.getId().toString());
+        headers.add("Location", API_V_1_BEER + "/" + savedDto.getId().toString());
 
         return new ResponseEntity(headers, HttpStatus.CREATED);
     }
