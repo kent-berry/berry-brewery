@@ -15,7 +15,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CustomerController {
     public static final String API_V_1_CUSTOMER = "/api/v1/customer";
-    private CustomerService customerService;
+
+    private final CustomerService customerService;
 
     @GetMapping("/{customerId}")
     public ResponseEntity<CustomerDto> getCustomer(@PathVariable("customerId")  UUID customerId){

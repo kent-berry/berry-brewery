@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@Deprecated
 @RequestMapping(BeerController.API_V_1_BEER)
 @RestController
 @RequiredArgsConstructor
