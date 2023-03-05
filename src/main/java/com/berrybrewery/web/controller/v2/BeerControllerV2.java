@@ -4,6 +4,7 @@ import com.berrybrewery.service.v2.BeerServiceV2;
 import com.berrybrewery.web.model.BeerDto;
 import com.berrybrewery.web.model.v2.BeerDtoV2;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,9 +33,9 @@ public class BeerControllerV2 {
     @PostMapping // POST - create new beer
     public ResponseEntity handlePost(@Valid @NotNull @RequestBody BeerDto beerDtoV2){
 
-        BeerDtoV2 savedDto = beerServiceV2.saveNewBeer(beerDtoV2);
+        val savedDto = beerServiceV2.saveNewBeer(beerDtoV2);
 
-        HttpHeaders headers = new HttpHeaders();
+        val headers = new HttpHeaders();
         //todo add hostname to url
         headers.add("Location", API_V_2_BEER + "/" + savedDto.getId().toString());
 
