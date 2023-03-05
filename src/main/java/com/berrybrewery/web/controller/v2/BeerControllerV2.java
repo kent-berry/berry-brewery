@@ -7,10 +7,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
+@Validated
 @RequestMapping(BeerControllerV2.API_V_2_BEER)
 @RestController
 @RequiredArgsConstructor
@@ -20,13 +24,13 @@ public class BeerControllerV2 {
     private final BeerServiceV2 beerServiceV2;
 
     @GetMapping({"/{beerId}"})
-    public ResponseEntity<BeerDtoV2> getBeer(@PathVariable("beerId") UUID beerId){
+    public ResponseEntity<BeerDtoV2> getBeer(@NotNull @PathVariable("beerId") UUID beerId){
 
         return new ResponseEntity<>(beerServiceV2.getBeerById(beerId), HttpStatus.OK);
     }
 
     @PostMapping // POST - create new beer
-    public ResponseEntity handlePost(@RequestBody BeerDto beerDtoV2){
+    public ResponseEntity handlePost(@Valid @NotNull @RequestBody BeerDto beerDtoV2){
 
         BeerDtoV2 savedDto = beerServiceV2.saveNewBeer(beerDtoV2);
 
@@ -38,7 +42,7 @@ public class BeerControllerV2 {
     }
 
     @PutMapping({"/{beerId}"})
-    public ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId, @RequestBody BeerDtoV2 beerDtoV2){
+    public ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId, @Valid @RequestBody BeerDtoV2 beerDtoV2){
 
         beerServiceV2.updateBeer(beerId, beerDtoV2);
 
